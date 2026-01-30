@@ -1,2 +1,5 @@
-./bin
-./onj
+.\bin
+.\obj
+bin
+obj
+./net10.0
