@@ -1,18 +1,52 @@
-﻿using System;
-
-namespace MyProject;
-
-public class Program
+﻿public struct Dimensions
 {
-    public static void Main()
+    public readonly int Width { get; }
+    public readonly int Height { get; }
+
+    public const int Value = 100;
+
+    public Dimensions(int width, int height)
     {
-        var r1 = new Reading { Temp = 25.0, MyLogger = new Logger { Message = "All OK" } };
-        var r2 = r1; // Copying the struct
 
-        r2.Temp = 30.0;                 // Changes r2, but NOT r1 (Value type copy)
-        r2.MyLogger.Message = "ERROR";  // Changes r2 AND r1! (Shared reference)
+        Width = width;
+        Height = height;
+    }
+}
 
-        Console.WriteLine($"r1.Temp={r1.Temp}, r1.Logger={r1.MyLogger.Message}");
-        Console.WriteLine($"r2.Temp={r2.Temp}, r2.Logger={r2.MyLogger.Message}");
+public class Screen
+{
+    private static readonly Dimensions _resolution = new Dimensions(1920, 1080);
+
+    public static ref readonly Dimensions GetResolution() //get the ref 
+    {
+        return ref _resolution;
+    }
+
+    public static void Display(ref readonly Dimensions d)
+    {
+        Console.WriteLine($"Width: {d.Width}, Height: {d.Height}");
+    }
+}
+
+class Example
+{
+    public readonly int myConst = 2;
+    public readonly int myConst2 = 10;
+
+    public Example()
+    {
+        myConst2 = 3;
+    }
+}
+class Program
+{
+    static void Main()
+    {
+        ref readonly Dimensions res = ref Screen.GetResolution();
+        Console.WriteLine(res.Width + " x " + res.Height); // output: 1920 x 1080
+        var d = new Dimensions(1300,600);
+        Screen.Display(ref d);
+        Console.WriteLine(Dimensions.Value); // output: 100
+        // res.Width = 1280;  Error: cannot modify readonly reference
     }
 }
