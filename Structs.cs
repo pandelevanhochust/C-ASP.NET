@@ -3,17 +3,20 @@ namespace MyProject;
 
 public static class StructWithoutNew
 {
-    public struct Coords
+    public readonly struct Coords
     {
-        public double x;
-        public double y;
+        public double x{ get; }
+        public double y{ get; }
+        public Coords(double a, double b)
+        {
+            x = a;
+            y = b;
+        }
     }
 
     public static void DoSomething()
     {
-        Coords p;
-        p.x = 3;
-        p.y = 4;
+        Coords p = new Coords(3, 4);
         Console.WriteLine($"({p.x}, {p.y})");  // output: (3, 4)
     }
 }

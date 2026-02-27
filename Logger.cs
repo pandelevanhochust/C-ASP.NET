@@ -13,5 +13,10 @@ public struct Reading
         Temp = 0;
         MyLogger = null;
     }
+
+    public static void DoSometimes()
+    {
+        
+    }
 }
 
