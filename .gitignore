@@ -1,5 +1,42 @@
-./net10.0
-[Dd]ebug/
-[Rr]elease/
+## Visual Studio 2015+ .gitignore
+.vs/
+.bin/
+.obj/
 bin/
 obj/
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Oo]ut/
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio files
+*.user
+*.userosscache
+*.sln.docstates
+*.suo
+*.userprefs
+*.csproj.user
+
+# NuGet
+packages/
+*.nupkg
+
+# Test results
+TestResults/
+*.trx
+
+# Node modules (often accidentally added if you use JS/TS in VS)
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
