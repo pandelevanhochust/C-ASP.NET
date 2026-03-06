@@ -1,5 +1,5 @@
-.\bin
-.\obj
-bin
-obj
 ./net10.0
+[Dd]ebug/
+[Rr]elease/
+bin/
+obj/
