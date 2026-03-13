@@ -30,11 +30,40 @@ public class Program
             Thread.Sleep(1000);
         }
     }
-    
-    public static void Main(string[] args)
+
+    public static void PintInfo(string info) =>
+        Console.WriteLine($"{info,10}    task:{Task.CurrentId,3}    " +
+                          $"thread: {Thread.CurrentThread.ManagedThreadId}");
+
+    public static void RunTask(int i)
+    {
+        PintInfo($"Start {i,3}");
+        Task.Delay(5000).Wait();
+        PintInfo($"Finish {i,3}");
+    }
+
+    public static void ParallelFor()
+    {
+        ParallelLoopResult result = Parallel.For(1, 20, RunTask);
+        Console.WriteLine($"All task start and finish: {result.IsCompleted}");
+    }
+
+    public static async Task Main(string[] args)
     {
         try
         {
+            // var services = new ServiceCollection();
+            // var serviceprovider = services.BuildServiceProvider();
+
+            DepenencyInjection di = new DepenencyInjection();
+            di.Honky();
+
+            string url = "https://jsonplaceholder.typicode.com/todos/4";
+            // Async.DoSomethingAsync(5, "Hello, async world!").Wait();    
+            // var result = Async.FetchUrl(url).Result;
+            // Console.WriteLine(result);
+
+            // ParallelFor();
 
             DoSomething(5, "Hello, world!");
 
