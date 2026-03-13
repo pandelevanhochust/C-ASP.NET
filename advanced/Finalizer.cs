@@ -5,8 +5,13 @@ using System.Threading.Tasks;
 
 namespace advanced
 {
-    public class Finalizer
+    public class Finalizer:IDisposable
     {
-    
+        public bool resource = true;
+        public void Dispose()
+        {
+            Console.WriteLine("The end");
+            resource = false;
+        }
     }
 }
