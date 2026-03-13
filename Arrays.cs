@@ -11,12 +11,22 @@ public class Arrays
         int diff = a - b;
         Console.WriteLine($"Math: {a} + {b} = {sum}");
 
-        // --- 2. Array Examples (From your table) ---
-        int[] numbers = [5, 2, 8, 1, 9 ];
+
+        // --- Define Array
+        int[] numbers = [5, 2, 8, 1, 9];
+        string[] names = new string[3];
+        char[] chars = new char[5]{'H', 'e', 'l', 'l', 'o'};   
+        Console.WriteLine(numbers[2]); // 8
 
         // Properties
         int len = numbers.Length; // Số lượng phần tử
         int rank = numbers.Rank;     // Số chiều (1D)
+
+        char lastItem = chars[^2]; // Last item using index 
+        char[] lasTwo = chars[^2..]; // Last two items using range 
+        char[] firstThree = chars[..3]; // First three items using range
+        char[] afterTwo = chars[2..]; // Items after the first two using range
+        char[] betweenTwoAndFour = chars[2..4]; // Items between index 2 and 4 using range
 
         // Methods (Using System.Linq)
         int min = numbers.Min();     // Giá trị nhỏ nhất
@@ -33,15 +43,15 @@ public class Arrays
         int[] arr2 = { 1, 2, 3 };
         int[] arr3 = arr1;
 
-        Console.WriteLine($"compare arrays arr1 arr2: {arr1 == arr2}"); 
-        Console.WriteLine($"compare arrays arr1 arr3: {arr1 == arr3}"); 
+        Console.WriteLine($"compare arrays arr1 arr2: {arr1 == arr2}"); //False
+        Console.WriteLine($"compare arrays arr1 arr3: {arr1 == arr3}"); //True
         Console.WriteLine($"compare arrays arr1 arr2 with SequenceEqual: {arr1.SequenceEqual(arr2)}");
     }
 
     public static void IndiceAndRange()
     {
-        char[] chars  = ['H', 'e', 'l', 'l', 'o' ];
-        
+        char[] chars = ['H', 'e', 'l', 'l', 'o'];
+
         char lastItem = chars[^2]; // Last item using index 
         char[] lasTwo = chars[^2..]; // Last two items using range 
         char[] firstThree = chars[..3]; // First three items using range
@@ -51,13 +61,10 @@ public class Arrays
 
     public static void MultiDimensionalArrays()
     {
+        int[][] jagged = [[12, 34], [56, 78, 90]];
+
         int[,] matrix = new int[2, 3] { { 1, 2, 3 }, { 4, 5, 6 } };
         int rows = matrix.GetLength(0); // Number of rows
         int cols = matrix.GetLength(1); // Number of columns
-
-        Console.WriteLine($"Matrix has {rows} rows and {cols} columns.");
-
-        int [][] jagged = [[12, 34], [56, 78, 90]];
-        Console.WriteLine($"Jagged array first row length: {jagged[1].Rank}");
     }
 }

@@ -22,6 +22,7 @@ static class Abc
 
 public class Program
 {
+
     public static void DoSomething(int seconds, string mgs)
     {
         for (int i = 1; i <= seconds; i++)
@@ -52,8 +53,10 @@ public class Program
     {
         try
         {
-            // var services = new ServiceCollection();
-            // var serviceprovider = services.BuildServiceProvider();
+
+            string s = "hihi";
+            char s1 = s[2];
+            Console.WriteLine(s1);
 
             DepenencyInjection di = new DepenencyInjection();
             di.Honky();
@@ -104,7 +107,6 @@ public class Program
 
             double x = 5.5.PowerTwo();
             7.5.Square();
-            string s = " aaaa";
             s.Print();
 
             Product prod = new Product("ame");
