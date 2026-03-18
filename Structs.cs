@@ -19,4 +19,5 @@ public static class StructWithoutNew
         Coords p = new Coords(3, 4);
         Console.WriteLine($"({p.x}, {p.y})");  // output: (3, 4)
     }
+
 }

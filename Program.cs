@@ -4,10 +4,37 @@ using Microsoft.VisualBasic;
 
 namespace MyProject;
 
+public class Animal
+{
+    private string name;
+    private int age;
+
+    public Animal(string name, int age)
+    {
+        this.name = name;
+        this.age = age;
+
+    }
+
+    public Animal()
+    {
+        this.name = "Unknown";
+        this.age = 0;
+    }
+
+    public void Speak()
+    {
+        Console.WriteLine($"{name} says: Hello!");
+    }
+}
+
 public class Program
 {
     public static void Main(string[] args)
     {
+        Animal dog = new Animal("Buddy", 5);
+        Animal dog2 = new Animal();
+
         Console.WriteLine("Hello, World!");
 
         // Call the method from StructWithoutNew
@@ -19,7 +46,7 @@ public class Program
         StructWithoutNew.Coords point = new StructWithoutNew.Coords(5, 10);
 
         Console.WriteLine($"Point coordinates: ({point.x}, {point.y})");
-    
+
         var r1 = new Reading { Temp = 25.5, MyLogger = new Logger { Message = "Temperature reading" } };
         var r2 = r1;
         Logger logger1 = new Logger { Message = "Hello" };
@@ -32,7 +59,7 @@ public class Program
         Box<int> intBox = new Box<int>(123);
         intBox.Display();
         intBox.Value = 456;
-        
+
         Box<string> strBox = new Box<string>("gg");
         strBox.Display();
 
@@ -44,7 +71,7 @@ public class Program
 
         Animals a1 = new Animals();
         Animals a2 = new Bear();
-    
+
         var downcast = (Bear)a2;
         downcast.BearSpeak();
 
@@ -59,34 +86,34 @@ public class Program
 
         var genAni = new Holder<Animals>(new Animals());
         var genBear = new Holder<Bear>(new Bear());
-        
+
         //type safe
 
         var holdAnimals = new Holder<Animals>(new Animals());
         var holdBear = new Holder<Bear>(new Bear());
 
         // holdAnimals = holdBear;
-        
+
         Covariance<Animals> coAni = null!;
         Covariance<Bear> coBear = null!;
 
-        Contravariance<Animals> nAni= new AnimalHandler<Animals>(new Animals());
+        Contravariance<Animals> nAni = new AnimalHandler<Animals>(new Animals());
         Contravariance<Bear> nBear = new AnimalHandler<Bear>(new Bear());
-       
+
         Covariance<Bear> cBear = new AnimalHandler<Bear>(new Bear());
         Covariance<Animals> cAni = new AnimalHandler<Animals>(new Animals());
 
-        
+
 
         Animals ani1 = coAni.Produce();
-                
+
     }
 
-    private static void Swap<T> (ref T a, ref T b)
-    {   
+    private static void Swap<T>(ref T a, ref T b)
+    {
         T temp = a;
         a = b;
         b = temp;
-    }    
- 
+    }
+
 }

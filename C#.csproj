@@ -8,4 +8,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+  <Compile Remove="vht43\**" />
+  <EmbeddedResource Remove="vht43\**" />
+  <None Remove="vht43\**" />
+</ItemGroup>
+
 </Project>

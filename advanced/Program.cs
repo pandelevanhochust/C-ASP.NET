@@ -1,4 +1,6 @@
-﻿using advanced;
+﻿using System.Runtime.InteropServices.Marshalling;
+using System.Security.Authentication.ExtendedProtection;
+using advanced;
 
 namespace Advanced;
 
@@ -22,6 +24,7 @@ static class Abc
 
 public class Program
 {
+
 
     public static void DoSomething(int seconds, string mgs)
     {
@@ -49,10 +52,33 @@ public class Program
         Console.WriteLine($"All task start and finish: {result.IsCompleted}");
     }
 
+    public record PointClass(int X, int Y); // record class (by default, is reference )
+    public record struct PointStruct(int X, int Y);
+
+
     public static async Task Main(string[] args)
     {
+
+        Cars.PrintProductionStats(); // Output: 0
+        Cars car1 = new Cars("Toyota Corolla");
+        // Access through instance method. Output: "Car model: Toyota Corolla"
+        car1.PrintModel();
+        // Access through static method. Output: 1
+        Cars.PrintProductionStats();
+
+        
+        var p1 = new PointClass(1, 2);
+        // p1.X = 5; // ERROR: X is init-only!
+
+        var p2 = new PointStruct(1, 2);
+        p2.X = 5; // PERFECTLY FINE. p2 is now (5, 2)
+
+
         try
         {
+
+            int? xx = 10;
+            Console.WriteLine(xx ?? 11);
 
             string s = "hihi";
             char s1 = s[2];
@@ -115,20 +141,6 @@ public class Program
             GC.WaitForPendingFinalizers();
 
             Console.Read();
-
-            int a = 5;
-            int b = 1;
-            int c = a - b;
-
-            if (b == 0)
-            {
-                // Exception e = new Exception("ra khong roi");
-                throw new CustomException();
-            }
-            if (c < 10)
-            {
-                throw new NumberException(c);
-            }
         }
         // catch (DivideByZeroException e) // 
         // {
